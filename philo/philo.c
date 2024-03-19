@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:16:00 by anttorre          #+#    #+#             */
-/*   Updated: 2024/03/19 15:49:05 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:05:07 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ static	void	init_forks_philos(t_data *data, char **argv)
 
 static void	init_program(t_data *data, char **argv, int argc)
 {
-	int	i;
-
+	data->i = 0;
 	data->dead_flag = 0;
 	data->num_of_philos = ft_atol(argv[1]);
 	data->num_times_to_eat = -1;
@@ -60,5 +59,5 @@ int	main(int argc, char **argv)
 	if (!check_args(argv) || argc < 5 || argc > 6)
 		return (printf("Invalid Arguments\n"), 1);
 	init_program(&data, argv, argc);
-	threads(data);
+	start_threads(&data);
 }

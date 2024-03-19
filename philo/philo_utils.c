@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:04:40 by anttorre          #+#    #+#             */
-/*   Updated: 2024/03/18 15:44:42 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:17:16 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,32 @@ long long int	ft_atol(const char *str)
 		i++;
 	}
 	return (num * sign);
+}
+
+int	check_args(char **arg)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (arg[++i])
+	{
+		j = -1;
+		while (arg[i][++j])
+			if (arg[i][j] < '0' || arg[i][j] > '9')
+				return (0);
+	}
+	i = 0;
+	while (arg[++i])
+	{
+		if (i == 5)
+		{
+			if (ft_atol(arg[i]) < 0)
+				return (0);
+		}
+		else
+			if (ft_atol(arg[i]) <= 0 || (i == 1 && ft_atol(arg[i]) > PHIL_MAX))
+				return (0);
+	}
+	return (1);
 }

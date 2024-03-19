@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:11:51 by anttorre          #+#    #+#             */
-/*   Updated: 2024/03/19 15:00:48 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:31:04 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo
 }					t_philo;
 typedef struct s_data
 {
+	int				i;
 	int				dead_flag;
 	int				num_of_philos;
 	int				num_times_to_eat;
@@ -46,12 +47,14 @@ typedef struct s_data
 	t_philo			philos[PHIL_MAX];
 }					t_data;
 
-/*---- PARSE_ARGS.C ----*/
-int				check_args(char **argv);
-
 /*---- PHILO_UTILS.C ----*/
 long long int	ft_atol(const char *str);
 int				ft_usleep(size_t milliseconds);
 size_t			get_current_time(void);
+int				check_args(char **argv);
+
+/*---- THREADS.C ----*/
+void			philo_msg(char *s, t_data *d);
+int				start_threads(t_data *d);
 
 #endif
