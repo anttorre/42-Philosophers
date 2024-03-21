@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:39:18 by anttorre          #+#    #+#             */
-/*   Updated: 2024/03/21 13:18:12 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:26:30 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ int	check_if_dead(t_philo *p)
 int	check_if_all_ate(t_philo *p)
 {
 	int	i;
-	int	finished_eating;
+	int	philo_finish_eat;
 
 	i = 0;
-	finished_eating = 0;
+	philo_finish_eat = 0;
 	if (p->data->num_times_to_eat == -1)
 		return (0);
 	while (i < p->data->num_of_philos)
 	{
 		pthread_mutex_lock(&p->data->meal_lock);
 		if (p[i].meals_eaten >= p->data->num_times_to_eat)
-			finished_eating++;
+			philo_finish_eat++;
 		pthread_mutex_unlock(&p->data->meal_lock);
 		i++;
 	}
-	if (finished_eating == p->data->num_of_philos)
+	if (philo_finish_eat == p->data->num_of_philos)
 	{
 		pthread_mutex_lock(&p->data->dead_lock);
 		p->data->dead_flag = 1;
