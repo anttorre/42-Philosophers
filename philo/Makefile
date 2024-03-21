@@ -22,7 +22,7 @@ INCLUDES = -I ./src/includes
 
 LIB = ar rcs
 
-SRCS =  philo.c parse_args.c philo_utils.c
+SRCS =  philo.c philo_routine.c philo_utils.c threads.c monitoring.c
 
 OBJS = $(SRCS:.c=.o)
 

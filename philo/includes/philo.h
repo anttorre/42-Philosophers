@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:11:51 by anttorre          #+#    #+#             */
-/*   Updated: 2024/03/19 16:31:04 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:19:49 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@
 # include <time.h>
 # include <sys/time.h>
 # define PHIL_MAX 200
+
+typedef struct s_data
+{
+	int				i;
+	int				dead_flag;
+	int				num_of_philos;
+	int				num_times_to_eat;
+	pthread_mutex_t	dead_lock;
+	pthread_mutex_t	meal_lock;
+	pthread_mutex_t	write_lock;
+	pthread_mutex_t	forks[PHIL_MAX];
+}					t_data;
 
 typedef struct s_philo
 {
@@ -33,28 +45,23 @@ typedef struct s_philo
 	size_t			start_time;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
+	t_data			*data;
 }					t_philo;
-typedef struct s_data
-{
-	int				i;
-	int				dead_flag;
-	int				num_of_philos;
-	int				num_times_to_eat;
-	pthread_mutex_t	dead_lock;
-	pthread_mutex_t	meal_lock;
-	pthread_mutex_t	write_lock;
-	pthread_mutex_t	forks[PHIL_MAX];
-	t_philo			philos[PHIL_MAX];
-}					t_data;
 
 /*---- PHILO_UTILS.C ----*/
 long long int	ft_atol(const char *str);
 int				ft_usleep(size_t milliseconds);
 size_t			get_current_time(void);
 int				check_args(char **argv);
+void			destroy_mutex(t_philo *p);
 
 /*---- THREADS.C ----*/
-void			philo_msg(char *s, t_data *d);
-int				start_threads(t_data *d);
+void			philo_msg(char *s, t_philo *p);
+int				start_threads(t_philo *p);
+
+void			eating(t_philo *p);
+void			dreaming(t_philo *p);
+void			thinking(t_philo *p);
+void			*monitoring(void *philo);
 
 #endif

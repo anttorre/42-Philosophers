@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:04:40 by anttorre          #+#    #+#             */
-/*   Updated: 2024/03/19 16:17:16 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/03/21 12:52:53 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,16 @@ int	check_args(char **arg)
 				return (0);
 	}
 	return (1);
+}
+
+void	destroy_mutex(t_philo *p)
+{
+	int	i;
+
+	i = -1;
+	pthread_mutex_destroy(&p->data->write_lock);
+	pthread_mutex_destroy(&p->data->meal_lock);
+	pthread_mutex_destroy(&p->data->dead_lock);
+	while (++i < p->data->num_of_philos)
+		pthread_mutex_destroy(&p->data->forks[i]);
 }
