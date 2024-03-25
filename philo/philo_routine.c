@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:16:33 by anttorre          #+#    #+#             */
-/*   Updated: 2024/03/25 16:20:33 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:54:50 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,3 @@ void	eating(t_philo *p)
 	pthread_mutex_unlock(p->r_fork);
 	pthread_mutex_unlock(p->l_fork);
 }
-
