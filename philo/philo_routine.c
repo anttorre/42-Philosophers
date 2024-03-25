@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:16:33 by anttorre          #+#    #+#             */
-/*   Updated: 2024/03/21 13:10:29 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:20:33 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	dreaming(t_philo *p)
 void	eating(t_philo *p)
 {
 	pthread_mutex_lock(p->r_fork);
-	philo_msg("has taken right fork.", p);
+	philo_msg("has taken a fork", p);
 	if (p->data->num_of_philos == 1)
 	{
 		ft_usleep(p->time_to_die);
@@ -34,9 +34,9 @@ void	eating(t_philo *p)
 		return ;
 	}
 	pthread_mutex_lock(p->l_fork);
-	philo_msg("has taken left fork.", p);
+	philo_msg("has taken a fork", p);
 	p->eating = 1;
-	philo_msg("is eating.", p);
+	philo_msg("is eating", p);
 	pthread_mutex_lock(&p->data->meal_lock);
 	p->last_meal = get_current_time();
 	p->meals_eaten++;

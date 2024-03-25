@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:39:18 by anttorre          #+#    #+#             */
-/*   Updated: 2024/03/21 14:26:30 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:21:08 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_if_dead(t_philo *p)
 	{
 		if (philosopher_dead(&p[i], p[i].time_to_die, p))
 		{
-			philo_msg("has died", p);
+			philo_msg("died", p);
 			pthread_mutex_lock(&p->data->dead_lock);
 			p->data->dead_flag = 1;
 			pthread_mutex_unlock(&p->data->dead_lock);
