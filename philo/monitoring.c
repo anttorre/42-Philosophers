@@ -6,7 +6,7 @@
 /*   By: anttorre <atormora@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:39:18 by anttorre          #+#    #+#             */
-/*   Updated: 2024/03/25 16:21:08 by anttorre         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:57:22 by anttorre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 int	philosopher_dead(t_philo *philo, size_t time_to_die, t_philo *p)
 {
 	pthread_mutex_lock(&p->data->meal_lock);
-	if (get_current_time() - philo->last_meal >= time_to_die
-		&& philo->eating == 0)
+	if (get_current_time() - philo->last_meal >= time_to_die)
 		return (pthread_mutex_unlock(&p->data->meal_lock), 1);
 	pthread_mutex_unlock(&p->data->meal_lock);
 	return (0);
